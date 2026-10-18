@@ -65,6 +65,41 @@ h1 {
   font-size: 1.55rem;
   font-weight: 400;
   line-height: 1;
+  animation: party-dance 1.2s ease-in-out infinite;
+}
+
+.party-count div:nth-child(2) strong {
+  animation-delay: 0.15s;
+}
+
+.party-count div:nth-child(3) strong {
+  animation-delay: 0.3s;
+}
+
+.party-count div:nth-child(4) strong {
+  animation-delay: 0.45s;
+}
+
+@keyframes party-dance {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(6deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .party-count strong {
+    animation: none;
+  }
 }
 
 .party-count span {
