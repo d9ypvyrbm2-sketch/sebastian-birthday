@@ -1,5 +1,15 @@
 const PARTY = new Date("2026-11-08T15:00:00-05:00").getTime();
-const slides = [{ type: "image", src: "invitation.png", label: "The invitation" }];
+const slides = [
+  { type: "image", src: "invitation.png", label: "The invitation" },
+  { type: "image", src: "photos/01-day-one.jpg", label: "Day one" },
+  { type: "image", src: "photos/02-smile.jpg", label: "A smile" },
+  { type: "image", src: "photos/03-five-months.jpg", label: "Five months" },
+  { type: "image", src: "photos/04-at-home.jpg", label: "At home" },
+  { type: "image", src: "photos/05-red-sox.jpg", label: "Red Sox" },
+  { type: "image", src: "photos/06-out-to-eat.jpg", label: "Out to eat" },
+  { type: "image", src: "photos/07-pool.jpg", label: "In the pool" },
+  { type: "image", src: "photos/08-car.jpg", label: "In the car" },
+];
 
 const countdown = document.getElementById("countdown");
 const song = document.getElementById("song");
