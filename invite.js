@@ -63,9 +63,17 @@ function showSlide() {
   });
 }
 
+let slideTimer = 0;
+
+function armSlides() {
+  clearTimeout(slideTimer);
+  slideTimer = setTimeout(() => go(1), 4000);
+}
+
 function go(step) {
   index = (index + step + slides.length) % slides.length;
   showSlide();
+  armSlides();
 }
 
 slides.forEach((item, dotIndex) => {
@@ -76,12 +84,14 @@ slides.forEach((item, dotIndex) => {
   dot.addEventListener("click", () => {
     index = dotIndex;
     showSlide();
+    armSlides();
   });
   dots.appendChild(dot);
 });
 document.getElementById("prev").addEventListener("click", () => go(-1));
 document.getElementById("next").addEventListener("click", () => go(1));
 showSlide();
+armSlides();
 paintCountdown();
 setInterval(paintCountdown, 1000);
 
