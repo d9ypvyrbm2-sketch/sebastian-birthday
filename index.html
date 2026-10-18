@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sebastian's 1st Birthday</title>
+    <meta
+      name="description"
+      content="Sunday, November 8, 2026, from 3:00 PM to 8:00 PM at 10 Dunbar Ave, Dorchester, MA."
+    />
+    <link rel="icon" href="invitation.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800&display=swap" />
+    <link rel="stylesheet" href="party.css" />
+  </head>
+  <body>
+    <main class="party">
+      <audio id="song" src="dame-hombro.mp3" loop preload="auto"></audio>
+      <div class="party-card">
+        <p class="party-kicker">Join us to celebrate</p>
+        <h1>Sebastian's 1st birthday</h1>
+        <div id="countdown" class="party-count" aria-live="polite">
+          <div><strong>0</strong><span>Days</span></div>
+          <div><strong>0</strong><span>Hours</span></div>
+          <div><strong>0</strong><span>Minutes</span></div>
+          <div><strong>0</strong><span>Seconds</span></div>
+        </div>
+        <div class="party-tools">
+          <button type="button" class="party-sound" id="sound">Play song</button>
+          <a class="party-jump" href="#reply">Reply</a>
+        </div>
+        <div class="party-show">
+          <div class="party-frame">
+            <img id="slide" src="invitation.png" alt="The invitation" />
+          </div>
+          <div class="party-nav">
+            <button type="button" class="party-prev" id="prev">Previous</button>
+            <div class="party-dots" id="dots"></div>
+            <button type="button" class="party-next" id="next">Next</button>
+          </div>
+          <p class="party-label" id="slide-label">1 of 1. The invitation</p>
+        </div>
+        <ul class="party-facts">
+          <li>Sunday, November 8, 2026</li>
+          <li>3:00 PM to 8:00 PM</li>
+          <li>10 Dunbar Ave, Dorchester, MA 02124</li>
+          <li>Please reply before November 5</li>
+          <li>Contact <a href="tel:8573166632">857-316-6632</a></li>
+        </ul>
+        <form class="party-reply" id="reply">
+          <h2>Are you coming?</h2>
+          <label class="party-kicker" for="guest-name">Your name</label>
+          <input id="guest-name" class="party-name" name="name" autocomplete="name" maxlength="60" required />
+          <div class="party-choices">
+            <button type="button" class="party-yes" id="yes" aria-pressed="false">Coming</button>
+            <button type="button" class="party-no" id="no" aria-pressed="false">Not coming</button>
+          </div>
+          <p class="party-error" id="error" hidden></p>
+          <button type="submit" class="party-send" id="send">Send answer</button>
+        </form>
+      </div>
+    </main>
+    <script src="store.js"></script>
+    <script src="invite.js"></script>
+  </body>
+</html>
