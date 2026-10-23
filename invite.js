@@ -122,9 +122,16 @@ function startSong() {
   if (hold) return;
   song.play().then(() => {
     sound.textContent = "Pause song";
+    window.removeEventListener("pointerdown", firstTap);
   }).catch(() => {
     sound.textContent = "Play song";
   });
+}
+
+// Browsers block sound until the guest taps, so try now and again on the first tap.
+function firstTap(event) {
+  if (event.target === sound) return;
+  startSong();
 }
 
 sound.addEventListener("click", () => {
@@ -137,6 +144,8 @@ sound.addEventListener("click", () => {
     sound.textContent = "Play song";
   }
 });
+window.addEventListener("pointerdown", firstTap);
+startSong();
 
 function choose(value) {
   coming = value;
