@@ -105,6 +105,10 @@ h1 {
   .party-count strong {
     animation: none;
   }
+
+  .party-bg {
+    display: none;
+  }
 }
 
 .party-count span {
@@ -133,10 +137,12 @@ h1 {
 }
 
 .party-tools {
+  flex-wrap: wrap;
   margin-bottom: 0.9rem;
 }
 
 .party-sound,
+.party-pause,
 .party-jump,
 .party-prev,
 .party-next,
@@ -148,6 +154,7 @@ h1 {
 }
 
 .party-sound,
+.party-pause,
 .party-jump {
   border: 0;
   text-decoration: none;
@@ -158,6 +165,11 @@ h1 {
 .party-sound {
   background: #ffd54a;
   color: #1a3a8c;
+}
+
+.party-pause {
+  background: #1a3a8c;
+  color: #ffd54a;
 }
 
 .party-jump {
