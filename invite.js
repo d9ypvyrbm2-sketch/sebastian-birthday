@@ -1,4 +1,6 @@
 const PARTY = new Date("2026-11-08T15:00:00-05:00").getTime();
+const PHONE = "+18573166632";
+const PHONE_SHOWN = "857-316-6632";
 const slides = [
   { type: "image", src: "invitation.png", label: "The invitation" },
   { type: "image", src: "photos/01-day-one.jpg", label: "Day one" },
@@ -22,7 +24,7 @@ const nameInput = document.getElementById("guest-name");
 const yes = document.getElementById("yes");
 const no = document.getElementById("no");
 const error = document.getElementById("error");
-const send = document.getElementById("send");
+const hint = document.getElementById("hint");
 
 let index = 0;
 let coming = null;
@@ -141,24 +143,10 @@ form.addEventListener("submit", (event) => {
     showError("Please choose coming or not coming.");
     return;
   }
-  send.disabled = true;
-  send.textContent = "Sending";
   error.hidden = true;
-  addReply(name, coming)
-    .then(() => {
-      form.innerHTML = '<div class="party-thanks"><h2>Thank you</h2><p>Your answer is saved.</p></div>';
-    })
-    .catch(() => {
-      send.disabled = false;
-      send.textContent = "Send answer";
-      showError("That did not send. Please try again.");
-    });
+  const message = name + (coming ? " is coming" : " is not coming") + " to Sebastian's 1st birthday.";
+  window.location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(message);
+  hint.textContent =
+    "Your messages app should open now. Press send there. If nothing opened, text \"" +
+    message + "\" to " + PHONE_SHOWN + ".";
 });
-
-const deviceKey = "sebastian-party-device";
-let deviceId = localStorage.getItem(deviceKey);
-if (!deviceId) {
-  deviceId = crypto.randomUUID();
-  localStorage.setItem(deviceKey, deviceId);
-}
-rememberDevice(deviceId).catch(() => {});
