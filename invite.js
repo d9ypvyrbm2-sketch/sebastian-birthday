@@ -1,4 +1,5 @@
 const PARTY = new Date("2026-11-08T15:00:00-05:00").getTime();
+const PARTY_END = new Date("2026-11-08T20:00:00-05:00").getTime();
 const PHONE = "+18573166632";
 const PHONE_SHOWN = "857-316-6632";
 const slides = [
@@ -25,10 +26,14 @@ const yes = document.getElementById("yes");
 const no = document.getElementById("no");
 const error = document.getElementById("error");
 const hint = document.getElementById("hint");
+const pause = document.getElementById("pause");
+const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let index = 0;
 let coming = null;
 let hold = false;
+let paused = calm;
+let countTimer = 0;
 
 function split(now) {
   const gap = PARTY - now;
@@ -45,7 +50,11 @@ function split(now) {
 function paintCountdown() {
   const left = split(Date.now());
   if (!left) {
-    countdown.outerHTML = '<p class="party-here">Sebastian\'s birthday is here</p>';
+    clearInterval(countTimer);
+    const text = Date.now() >= PARTY_END
+      ? "Thank you for celebrating Sebastian's 1st birthday!"
+      : "Sebastian's birthday is here";
+    countdown.outerHTML = '<p class="party-here">' + text + "</p>";
     return;
   }
   const values = [left.days, left.hours, left.minutes, left.seconds];
@@ -69,7 +78,13 @@ let slideTimer = 0;
 
 function armSlides() {
   clearTimeout(slideTimer);
+  if (paused) return;
   slideTimer = setTimeout(() => go(1), 3000);
+}
+
+function paintPause() {
+  pause.textContent = paused ? "Play photos" : "Pause photos";
+  pause.setAttribute("aria-pressed", paused ? "true" : "false");
 }
 
 function go(step) {
@@ -92,10 +107,16 @@ slides.forEach((item, dotIndex) => {
 });
 document.getElementById("prev").addEventListener("click", () => go(-1));
 document.getElementById("next").addEventListener("click", () => go(1));
+pause.addEventListener("click", () => {
+  paused = !paused;
+  paintPause();
+  armSlides();
+});
 showSlide();
+paintPause();
 armSlides();
+countTimer = setInterval(paintCountdown, 1000);
 paintCountdown();
-setInterval(paintCountdown, 1000);
 
 function startSong() {
   if (hold) return;
@@ -116,8 +137,6 @@ sound.addEventListener("click", () => {
     sound.textContent = "Play song";
   }
 });
-startSong();
-window.addEventListener("pointerdown", startSong);
 
 function choose(value) {
   coming = value;
