@@ -6,6 +6,23 @@ body {
   font-family: Nunito, "Trebuchet MS", sans-serif;
 }
 
+.party-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(244, 248, 255, 0.55);
+  z-index: -1;
+}
+
 .party-card {
   min-height: 100dvh;
   box-sizing: border-box;
