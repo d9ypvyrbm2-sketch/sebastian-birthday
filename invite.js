@@ -69,7 +69,7 @@ let slideTimer = 0;
 
 function armSlides() {
   clearTimeout(slideTimer);
-  slideTimer = setTimeout(() => go(1), 4000);
+  slideTimer = setTimeout(() => go(1), 3000);
 }
 
 function go(step) {
